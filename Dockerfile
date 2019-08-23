@@ -20,17 +20,17 @@ RUN sed -i 's/http:\/\/archive.ubuntu.com\/ubuntu\//http:\/\/mirrors.tuna.tsingh
     sh -c 'mysqld_safe &' && \
     sleep 5s  && \
     mysqladmin -uroot password 'b84f73327300021c961c2ce1f9d0dcdc' && \
-    mysql -e "source /var/www/html/web.sql;" -uroot -pb84f73327300021c961c2ce1f9d0dcdc 
     # supervisor
-RUN mkdir -p /var/log/supervisor && \
+    mkdir -p /var/log/supervisor && \
     mv /var/www/html/supervisord.conf /etc/ && \
-    # 
+    #
     chown -R root:root /var/www/html/ && \
     chmod -R 777 /var/www/html/ && \
     chmod -R +t /var/www/html/ && \
-    rm /var/www/html/web.sql && \
-    rm /var/www/html/index.html
+    rm /var/www/html/index.html && \
+    mv /var/www/html/start.sh / && \
+    chmod +x /start.sh
 
 EXPOSE 80
 
-ENTRYPOINT ["supervisord", "-n"]
+ENTRYPOINT ["/start.sh"]
