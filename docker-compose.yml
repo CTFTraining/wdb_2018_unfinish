@@ -4,7 +4,10 @@ version: "2"
 services:
 
   web:
+    build: .
     image: ctftraining/wdb_2018_unfinish
     restart: always
     ports:
       - "127.0.0.1:8308:80"
+    environment:
+      - FLAG=flag{flag_test}

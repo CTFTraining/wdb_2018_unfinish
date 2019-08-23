@@ -8,7 +8,7 @@ CREATE TABLE `flag` (
   `fffffflllag__2333333` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `flag` VALUES ('flag{wdb2018blindsqlwdb2018blindsql}');
+INSERT INTO `flag` VALUES ('flag_here');
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
