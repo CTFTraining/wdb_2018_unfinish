@@ -2,7 +2,7 @@
 
 sh -c 'mysqld_safe &'
 mysql_ready() {
-	mysqladmin ping --socket=/run/mysqld/mysqld.sock --user=root --password=root > /dev/null 2>&1
+	mysqladmin ping --host=127.0.0.1 --user=root --password=root > /dev/null 2>&1
 }
 
 while !(mysql_ready)
