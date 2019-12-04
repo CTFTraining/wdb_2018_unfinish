@@ -1,7 +1,15 @@
 #!/bin/bash
 
 sh -c 'mysqld_safe &'
-sleep 5s
+mysql_ready() {
+	mysqladmin ping --socket=/run/mysqld/mysqld.sock --user=root --password=root > /dev/null 2>&1
+}
+
+while !(mysql_ready)
+do
+	echo "waiting for mysql ..."
+	sleep 3
+done
 sed -i "s/flag_here/$FLAG/" /var/www/html/web.sql
 mysql -e "source /var/www/html/web.sql;" -uroot -pb84f73327300021c961c2ce1f9d0dcdc
 rm /var/www/html/web.sql
